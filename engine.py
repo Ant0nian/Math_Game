@@ -1,11 +1,17 @@
+"""
+В этом файле хранятся основные методы, нужные для создания игры.
+По сути здесь мы создаем ее движок
+"""
+
+
 from random import randint
 
 
-def switch():  # generate random num for definition of our operations
+def switch():                   # Этот метод возвращает рандомное число от 0 до 3 для определения действия
     return randint(0, 3)
 
 
-def f_s(sw, s):
+def f_s(sw, s):                 # В этом методе мы создаем первое число в зависимости от того, какое действие нам выпало
     if sw == 0 or sw == 1:
         f = randint(1, 1000)
     if sw == 2:
@@ -17,7 +23,7 @@ def f_s(sw, s):
     return f
 
 
-def s_s(sw):
+def s_s(sw):                    # Создаем второе число в зависимости от действия
     if sw == 0:
         s = randint(1, 1000)
     if sw == 1:
@@ -29,7 +35,7 @@ def s_s(sw):
     return s
 
 
-def result(f, s, sw):
+def result(f, s, sw):           # На вход здесь подаются оба числа и определитель действий. Тут мы получаем ответ
     if sw == 0:
         res = f + s
     if sw == 1:
@@ -41,7 +47,7 @@ def result(f, s, sw):
     return res
 
 
-def list_of_answers(res):
+def list_of_answers(res):       # Здесь мы генерируем список неправильных ответов
     rnd_opts = [randint(res - 10.0, res + 10.0) for i in range(4)]
     for a in rnd_opts:
         if a == res:
@@ -49,8 +55,22 @@ def list_of_answers(res):
     return rnd_opts
 
 
+'''
+В методе ниже
+Генерируем определитель сценария ответов. 
+Это нужно для того, чтобы правильный ответ находился все время в разном месте
+'''
+
+
 def rand_ans():
     return randint(1, 4)
+
+
+'''
+В методах ниже мы создаем нужные нам кнопки вариантов ответов
+Они создаются на основе счетчика неправильных ответов, 
+результата выполнения действия и списка неправильных ответов
+'''
 
 
 def button1(res, r, l_o_a):
